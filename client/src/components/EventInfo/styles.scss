@@ -1,0 +1,22 @@
+.event-info {
+  display: grid; 
+  grid-auto-columns: 1fr; 
+  grid-template-columns: 48px 1fr; 
+  grid-template-rows: 38px 54px 38px 54px 48px;
+  grid-template-areas:
+    "titleIcon title"
+    ". description"
+    "startIcon start"
+    "endIcon end"
+    "locationIcon location";
+  
+  .title { grid-area: title; }
+  .description { grid-area: description; }
+  .start { grid-area: start; }
+  .end { grid-area: end; }
+  .location { grid-area: location; }
+  .titleIcon { grid-area: titleIcon; }
+  .startIcon { grid-area: startIcon; }
+  .endIcon { grid-area: endIcon; }
+  .locationIcon { grid-area: locationIcon; }
+}
