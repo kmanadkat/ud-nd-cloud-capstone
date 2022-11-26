@@ -5,7 +5,7 @@ import { Event } from '../../types/Event'
 import './styles.scss'
 import { parseDateTimeString } from '../../utils'
 
-const EventInfo = ({ event, onDelete }: EventProps) => {
+const EventInfo = ({ event, onDelete, onEdit }: EventProps) => {
   return (
     <div className="event-details w-full h-full p-10 rounded-lg bg-white shadow">
       <h2 className="text-xl font-semibold">Event Details</h2>
@@ -25,10 +25,10 @@ const EventInfo = ({ event, onDelete }: EventProps) => {
           </div>
           {event.attachmentUrl && <img className='max-h-[240px] rounded-lg' src={event.attachmentUrl} alt={`${event.title} location`} />}
           <div className='event-footer flex mt-10 gap-4'>
-            <button 
+            {!event.attachmentUrl && <button 
               className='px-4 py-2 text-blue-600 hover:bg-blue-50 transition-all active:bg-blue-100 rounded'
-              onClick={() => onDelete(event.id)} >Edit
-            </button>
+              onClick={onEdit} >Add Attachment
+            </button>}
             <button 
               className='px-4 py-2 text-red-600 hover:bg-red-50 transition-all active:bg-red-100 rounded'
               onClick={() => onDelete(event.id)} >Delete
@@ -46,6 +46,7 @@ const EventInfo = ({ event, onDelete }: EventProps) => {
 type EventProps = {
   event: null | Event
   onDelete: (eventId: string) => void
+  onEdit: () => void
 }
 
 export default EventInfo

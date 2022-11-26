@@ -1,23 +1,26 @@
 import { useState } from "react"
 
 const useCalendar = () => { 
-  const [selectedDate, _setSelectedDate] = useState<Date>(new Date())
-  const [isOpen, setIsOpen] = useState(false)
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date())
+  const [isAddEventModalOpen, setIsAddEventModalOpen] = useState(false)
+  const [isUpdateEventModalOpen, setIsUpdateEventModalOpen] = useState(false)
 
-  const closeModal = () => {
-    setIsOpen(false)
+  const closeAddEventModal = () => {
+    setIsAddEventModalOpen(false)
   }
   
   const handleDateClick = (dateArgs: any) => {
-    _setSelectedDate(dateArgs.start)
-    setIsOpen(true)
+    setSelectedDate(dateArgs.start)
+    setIsAddEventModalOpen(true)
   }
 
   return {
     selectedDate,
     handleDateClick,
-    isOpen,
-    closeModal
+    isAddEventModalOpen,
+    closeAddEventModal,
+    isUpdateEventModalOpen,
+    setIsUpdateEventModalOpen
   }
 }
 

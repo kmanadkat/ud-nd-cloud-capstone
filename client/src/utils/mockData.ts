@@ -18,7 +18,7 @@ export const mockData: {eventsData: Event[], userName: string} = {
       start: '2022-11-25T17:00:02.712Z',
       end: '2022-11-25T18:00:02.712Z',
       location: 'Guest house dinning room',
-      attachmentUrl: 'https://cf.bstatic.com/xdata/images/hotel/max1280x900/124665007.jpg?k=217730d5cb5ef28852766a09d90ea1ec9af78102385fe31914117dab8fe632b4&o=&hp=1'
+      attachmentUrl: ''
     }
   ],
   userName: "Krupesh Anadkat"
