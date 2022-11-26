@@ -1,7 +1,7 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 import * as middy from 'middy'
 import { cors } from 'middy/middlewares'
-import { createTodo } from '../../businessLogic/todos';
+import { createTodo } from '../../businessLogic/events';
 import { TodoItem } from '../../models/EventItem';
 import { CreateTodoRequest } from '../../requests/CreateEventRequest'
 import { getUserId } from '../utils';
