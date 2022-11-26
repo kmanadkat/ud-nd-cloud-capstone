@@ -3,7 +3,7 @@ import { toyyyymmdd } from "../utils"
 
 const useAddEventForm = (startDate: Date) => {
   const [formState, setFormState] = useState({
-    name: '',
+    title: '',
     description: '',
     location: '',
     allDay: true,

@@ -1,3 +1,5 @@
+import { Event } from "../types/Event"
+
 export const parseDateTimeString = (dateStr: undefined | string) => {
   if(!dateStr)
     return ''
@@ -17,4 +19,17 @@ export const toyyyymmdd = (dateObj: Date) => {
 export const getAuthStatus = ():boolean => {
   const authStatus = localStorage.getItem('isLoggedIn')
   return !!authStatus
+}
+
+export const getDateStringForDB = (dateStr: string, timeStr: string) => {
+  let dateString = dateStr
+  if(!timeStr) {
+    return dateStr
+  }
+  dateString = `${dateString} ${timeStr}`
+  return new Date(dateString).toISOString()
+}
+
+export const attachIdToEvents = (events: Event[]) => {
+  return events.map(item => ({...item, id: item.eventId}))
 }

@@ -1,9 +1,16 @@
 import CloseIcon from '../../assets/close.svg'
+import { AddEventState } from '../../types/AddEventState'
 import InputCheckbox from '../InputCheckbox'
 import InputDateTime from '../InputDateTime'
 import InputText from '../InputText'
 
-const AddEventForm = ({closeModal, formState, onInputTextChange, onCheckboxChange}: AddEventFormProps) => {
+const AddEventForm = ({closeModal, formState, onInputTextChange, onCheckboxChange, onSubmit}: AddEventFormProps) => {
+
+  const handleSubmit = (event: any) => {
+    event.preventDefault()
+    onSubmit(formState, closeModal)
+  }
+
   return (
     <div className="form-wrapper pt-2 px-4">
       <div className="form-header flex justify-between items-center border-b px-8 py-6">
@@ -13,13 +20,13 @@ const AddEventForm = ({closeModal, formState, onInputTextChange, onCheckboxChang
         </button>
       </div>
       <div className='form-fields py-8'>
-        <form action="">
+        <form onSubmit={handleSubmit}>
           <InputText 
             label='Event Name'
-            name='name'
+            name='title'
             isRequired={true}
             isDisabled={false}
-            value={formState.name}
+            value={formState.title}
             onChange={onInputTextChange} />
           <InputText 
             label='Event Description'
@@ -88,6 +95,7 @@ type AddEventFormProps = {
   formState: any
   onInputTextChange: (event: any) => void
   onCheckboxChange: (event: any) => void
+  onSubmit: (formState: AddEventState, closeModal: () => void) => void
 }
 
 export default AddEventForm

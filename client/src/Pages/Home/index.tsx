@@ -32,7 +32,7 @@ const Home = () => {
 
   return (
     <>
-      <Toaster position="bottom-center" />
+      <Toaster position="bottom-center" toastOptions={{duration: 4000}} />
       <Header />
       <div className="app-wrapper grid grid-cols-1 lg:grid-cols-12 p-6 md:p-12 gap-12">
         <div className="calendar-wrapper lg:col-span-8">
@@ -48,7 +48,8 @@ const Home = () => {
               closeModal={closeAddEventModal}
               formState={formState}
               onInputTextChange={handleInputTextChange}
-              onCheckboxChange={handleInputCheckbox} />
+              onCheckboxChange={handleInputCheckbox}
+              onSubmit={addEvent} />
           </Modal>
           <Modal isOpen={isUpdateEventModalOpen} closeModal={() => setIsUpdateEventModalOpen(false)}>
             <UpdateEventForm 

@@ -4,6 +4,7 @@ export const mockData: {eventsData: Event[], userName: string} = {
   eventsData: [
     {
       eventId: '1',
+      id: '1',
       userId: '',
       title: 'Office Reunion',
       description: 'Work from home ends & office resumes',
@@ -14,6 +15,7 @@ export const mockData: {eventsData: Event[], userName: string} = {
     },
     {
       eventId: '2',
+      id: '2',
       userId: '',
       title: 'Club Meeting',
       description: 'Discussion on purchase of new GYM equipments',
