@@ -1,13 +1,19 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./Pages/Home";
+import Callback from "./Pages/Callback";
+import EnsureLoggedIn from "./Pages/EnsureLoggedIn";
+import Login from "./Pages/Login";
+import Notfound from "./Pages/Notfound";
 
 
 function App() {
   const router = createBrowserRouter([
-    { path: "/", element: <Home /> },
+    { path: "/", element: <EnsureLoggedIn /> },
+    { path: "/login", element: <Login /> },
+    { path: "/callback", element: <Callback /> },
+    { path: '*', element: <Notfound />}
   ]);
   
   return <RouterProvider router={router} />
 }
 
-export default App;
+export default App

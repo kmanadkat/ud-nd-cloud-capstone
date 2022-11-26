@@ -1,10 +1,8 @@
-export interface Event {
-  eventId: string
-  userId: string
+export interface CreateEventRequest {
   title: string
   start: string
   end: string
   location: string
-  description?: string
+  description: string
   attachmentUrl?: string
 }

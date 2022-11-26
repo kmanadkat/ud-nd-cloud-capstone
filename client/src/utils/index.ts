@@ -13,3 +13,8 @@ export const toyyyymmdd = (dateObj: Date) => {
   dateObj = new Date(dateObj.getTime() - (offset*60*1000))
   return dateObj.toISOString().split('T')[0]
 }
+
+export const getAuthStatus = ():boolean => {
+  const authStatus = localStorage.getItem('isLoggedIn')
+  return !!authStatus
+}

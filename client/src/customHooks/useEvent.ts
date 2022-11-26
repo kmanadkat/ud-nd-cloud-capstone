@@ -16,7 +16,7 @@ const useEvent = () => {
   // Handle Event Selection
   const selectEvent = (eventArgs: any) => {
     const { event } = eventArgs
-    const eventIndex = events.findIndex(item => item.id === event.id)
+    const eventIndex = events.findIndex(item => item.eventId === event.id)
     if (eventIndex !== -1) {
       setSelectedEvent(events[eventIndex])
     }
@@ -29,7 +29,7 @@ const useEvent = () => {
 
   // Remove Event API
   const removeEvent = (eventId: string) => {
-    setEvents((prevState) => prevState.filter(item => item.id !== eventId))
+    setEvents((prevState) => prevState.filter(item => item.eventId !== eventId))
     setSelectedEvent(null)
     toast.success("Event deleted!", { duration: 4000 })
   }

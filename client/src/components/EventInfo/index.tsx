@@ -31,7 +31,7 @@ const EventInfo = ({ event, onDelete, onEdit }: EventProps) => {
             </button>}
             <button 
               className='px-4 py-2 text-red-600 hover:bg-red-50 transition-all active:bg-red-100 rounded'
-              onClick={() => onDelete(event.id)} >Delete
+              onClick={() => onDelete(event.eventId)} >Delete
             </button>
           </div>
         </>}

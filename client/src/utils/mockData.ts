@@ -3,7 +3,8 @@ import { Event } from "../types/Event";
 export const mockData: {eventsData: Event[], userName: string} = {
   eventsData: [
     {
-      id: '1',
+      eventId: '1',
+      userId: '',
       title: 'Office Reunion',
       description: 'Work from home ends & office resumes',
       start: '2022-11-12',
@@ -12,7 +13,8 @@ export const mockData: {eventsData: Event[], userName: string} = {
       attachmentUrl: 'https://propmedia1.propertyshare.in/website/property/NlNSVjFwQUdNR3pzQkF1ZGJ3Q0krdz09/media-v2/images/main/665x400/1578665089-ibc-knowledge-park-bangalore-1.jpg'
     },
     {
-      id: '2',
+      eventId: '2',
+      userId: '',
       title: 'Club Meeting',
       description: 'Discussion on purchase of new GYM equipments',
       start: '2022-11-25T17:00:02.712Z',
