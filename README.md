@@ -1,4 +1,4 @@
-## Event Planner
+## Event Planner - Serverless Backend
 This is full stack project built on top of React Typescript in Frontend & Node Typescript as Backend. The goal of this project was to create & deploy backend to AWS serverless cloud formation. It is final capstone project of Udacity's Cloud Developer Nanodegree.
 
 ### Functionality of Application
