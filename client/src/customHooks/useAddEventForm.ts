@@ -31,7 +31,20 @@ const useAddEventForm = (startDate: Date) => {
     setFormState(prevState => ({ ...prevState, allDay: value }))
   }
 
-  return {formState, handleInputCheckbox, handleInputTextChange}
+  const resetFormState = () => {
+    setFormState({
+      title: '',
+      description: '',
+      location: '',
+      allDay: true,
+      startDate: toyyyymmdd(startDate),
+      startTime: '',
+      endDate: toyyyymmdd(startDate),
+      endTime: ''
+    })
+  }
+
+  return {formState, handleInputCheckbox, handleInputTextChange, resetFormState}
 }
 
 export default useAddEventForm

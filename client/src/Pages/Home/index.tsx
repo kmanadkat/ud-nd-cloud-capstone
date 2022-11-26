@@ -28,7 +28,7 @@ const Home = () => {
     setIsUpdateEventModalOpen
   } = useCalendar()
 
-  const {formState, handleInputCheckbox, handleInputTextChange} = useAddEventForm(selectedDate)
+  const {formState, handleInputCheckbox, handleInputTextChange, resetFormState} = useAddEventForm(selectedDate)
 
   return (
     <>
@@ -49,7 +49,8 @@ const Home = () => {
               formState={formState}
               onInputTextChange={handleInputTextChange}
               onCheckboxChange={handleInputCheckbox}
-              onSubmit={addEvent} />
+              onSubmit={addEvent}
+              resetFormState={resetFormState} />
           </Modal>
           <Modal isOpen={isUpdateEventModalOpen} closeModal={() => setIsUpdateEventModalOpen(false)}>
             <UpdateEventForm 

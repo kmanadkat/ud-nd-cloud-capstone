@@ -4,18 +4,23 @@ import InputCheckbox from '../InputCheckbox'
 import InputDateTime from '../InputDateTime'
 import InputText from '../InputText'
 
-const AddEventForm = ({closeModal, formState, onInputTextChange, onCheckboxChange, onSubmit}: AddEventFormProps) => {
+const AddEventForm = ({closeModal, formState, onInputTextChange, onCheckboxChange, onSubmit, resetFormState}: AddEventFormProps) => {
 
   const handleSubmit = (event: any) => {
     event.preventDefault()
     onSubmit(formState, closeModal)
   }
 
+  const handleClose = () => {
+    resetFormState()
+    closeModal()
+  }
+
   return (
     <div className="form-wrapper pt-2 px-4">
       <div className="form-header flex justify-between items-center border-b px-8 py-6">
         <h3 className='font-semibold text-gray-800'>Add a New Event</h3>
-        <button onClick={closeModal} className="border-none outline-none">
+        <button onClick={handleClose} className="border-none outline-none">
           <img src={CloseIcon} alt="Close Icon" />
         </button>
       </div>
@@ -81,7 +86,7 @@ const AddEventForm = ({closeModal, formState, onInputTextChange, onCheckboxChang
           </div>
 
           <div className="form-footer flex justify-center items-center gap-6 border-t mt-4 pt-6">
-            <button className='px-5 py-3 bg-gray-200 active:bg-gray-300 rounded text-sm' onClick={closeModal}>Cancel</button>
+            <button className='px-5 py-3 bg-gray-200 active:bg-gray-300 rounded text-sm' onClick={handleClose}>Cancel</button>
             <button className='px-5 py-3 bg-blue-600 active:bg-blue-700 rounded text-sm text-white' type='submit'>Submit</button>
           </div>
         </form>
@@ -96,6 +101,7 @@ type AddEventFormProps = {
   onInputTextChange: (event: any) => void
   onCheckboxChange: (event: any) => void
   onSubmit: (formState: AddEventState, closeModal: () => void) => void
+  resetFormState: () => void
 }
 
 export default AddEventForm
