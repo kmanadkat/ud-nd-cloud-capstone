@@ -8,6 +8,7 @@ import UpdateEventForm from "../../components/UpdateEventForm";
 import useAddEventForm from "../../customHooks/useAddEventForm";
 import useCalendar from "../../customHooks/useCalendar";
 import useEvent from "../../customHooks/useEvent";
+import useUpdateEvent from "../../customHooks/useUpdateEvent";
 
 const Home = () => {
   const { 
@@ -29,6 +30,7 @@ const Home = () => {
   } = useCalendar()
 
   const {formState, handleInputCheckbox, handleInputTextChange, resetFormState} = useAddEventForm(selectedDate)
+  const {attachmentFile, handleAttachmentFile, resetAttachment} = useUpdateEvent()
 
   return (
     <>
@@ -55,7 +57,11 @@ const Home = () => {
           <Modal isOpen={isUpdateEventModalOpen} closeModal={() => setIsUpdateEventModalOpen(false)}>
             <UpdateEventForm 
               event={selectedEvent}
-              closeModal={() => setIsUpdateEventModalOpen(false)} />
+              currentFile={attachmentFile}
+              handleFileChange={handleAttachmentFile}
+              resetFile={resetAttachment}
+              updateModalState={setIsUpdateEventModalOpen}
+              onSubmit={updateEvent} />
           </Modal>
         </div>
       </div>

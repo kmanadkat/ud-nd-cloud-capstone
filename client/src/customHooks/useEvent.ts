@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
-import { createEvent, deleteEvent, getEvents } from "../api/events-api"
+import { createEvent, deleteEvent, getEvents, getUploadUrl, uploadFile } from "../api/events-api"
 import auth from "../auth/auth"
+import { bucketUrl } from "../config"
 import { AddEventState } from "../types/AddEventState"
 import { CreateEventRequest } from "../types/CreateEventRequest"
 import { Event } from "../types/Event"
@@ -26,7 +27,6 @@ const useEvent = () => {
 
   // Handle Event Selection
   const selectEvent = (eventArgs: any) => {
-    console.log(eventArgs)
     const { event } = eventArgs
     const eventIndex = events.findIndex(item => item.eventId === event.id)
     if (eventIndex !== -1) {
@@ -72,8 +72,20 @@ const useEvent = () => {
   }
 
   // Update Event API
-  const updateEvent = () => {
-
+  const updateEvent = async (eventId: string, attachmentFile: Buffer) => {
+    try {
+      const uploadUrl = await getUploadUrl(auth.getIdToken(), eventId)
+      await uploadFile(uploadUrl, attachmentFile)
+      setEvents(prevState => prevState.map(item => ({
+        ...item,
+        attachmentUrl: item.eventId === eventId ? `${bucketUrl}${eventId}` : item.attachmentUrl
+      })))
+      setSelectedEvent((prevState:any) => ({...prevState, attachmentUrl: `${bucketUrl}${eventId}`}))
+      return true
+    } catch(err) {
+      console.error(err)
+      throw new Error('Error occured uploading file')
+    }
   }
 
   return {events, selectedEvent, addEvent, selectEvent, removeEvent, updateEvent}

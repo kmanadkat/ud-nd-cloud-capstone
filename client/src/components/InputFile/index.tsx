@@ -1,6 +1,6 @@
 import nextId from "react-id-generator";
 
-const InputFile = ({label}: InputFileProps) => {
+const InputFile = ({label, handleChange}: InputFileProps) => {
   const htmlId = nextId()
   return (
     <div className="inputText-wrapper flex flex-col gap-3 mb-8 px-8">
@@ -8,10 +8,11 @@ const InputFile = ({label}: InputFileProps) => {
       <input
         id={htmlId}
         type="file"
-        accept=",.jpg,.jpeg,.png"
+        accept="image/*"
         className='outline-none border-none py-2'
         autoComplete="off"
-        required />
+        required
+        onChange={handleChange} />
       <small className="text-xs text-gray-500">PNG, JPG up to 10MB</small>
     </div>
   )
@@ -19,6 +20,7 @@ const InputFile = ({label}: InputFileProps) => {
 
 type InputFileProps = {
   label: string
+  handleChange: (event: any) => void
 }
 
 export default InputFile

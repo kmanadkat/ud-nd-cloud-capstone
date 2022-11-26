@@ -4,7 +4,6 @@ import { CreateEventRequest } from '../types/CreateEventRequest';
 import Axios from 'axios'
 
 export async function getEvents(idToken: string): Promise<Event[]> {
-  console.log(idToken)
   console.log('Fetching events')
 
   const response = await Axios.get(`${apiEndpoint}/events`, {
