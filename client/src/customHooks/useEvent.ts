@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
-import { createEvent, getEvents } from "../api/events-api"
+import { createEvent, deleteEvent, getEvents } from "../api/events-api"
 import auth from "../auth/auth"
 import { AddEventState } from "../types/AddEventState"
 import { CreateEventRequest } from "../types/CreateEventRequest"
@@ -58,9 +58,17 @@ const useEvent = () => {
 
   // Remove Event API
   const removeEvent = (eventId: string) => {
-    setEvents((prevState) => prevState.filter(item => item.eventId !== eventId))
-    setSelectedEvent(null)
-    toast.success("Event deleted!", { duration: 4000 })
+    const deleteEventPromise = deleteEvent(auth.getIdToken(), eventId).then(() => {
+      setEvents((prevState) => prevState.filter(item => item.eventId !== eventId))
+      setSelectedEvent(null)
+    })
+    toast.promise(
+      deleteEventPromise, {
+        loading: 'Deleting Event',
+        success: 'Done',
+        error: 'Error occured!'
+      }
+    )
   }
 
   // Update Event API
