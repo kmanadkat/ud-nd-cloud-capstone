@@ -19,8 +19,6 @@ The application stores Events, and each Event contains following field:
 - `end` (Date Time string) - end date & time of the event
 - `attachmentUrl` (string) (optional) - a URL pointing to an image attached to a Event
 
-You might also store an id of a user who created a TODO item.
-
 ### Project Setup
 
 To run the Frontend locally, follow below steps after cloning the repository `master` branch:
