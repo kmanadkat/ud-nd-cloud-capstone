@@ -42,77 +42,57 @@ functions:
   Auth:
     handler: src/lambda/auth/auth0Authorizer.handler
 
-  GetTodos:
-    handler: src/lambda/http/getTodos.handler
+  GetEvents:
+    handler: src/lambda/http/getEvents.handler
     events:
       - http:
           method: get
-          path: todos
+          path: events
           cors: true
           authorizer: Auth
     iamRoleStatements:
       - Effect: Allow
         Action:
           - dynamodb:Query
-        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.EVENTS_TABLE}
       - Effect: Allow
         Action:
           - dynamodb:Query
-        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}/index/${self:provider.environment.TODOS_CREATED_AT_INDEX}
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.EVENTS_TABLE}/index/${self:provider.environment.TODOS_CREATED_AT_INDEX}
 
-  CreateTodo:
-    handler: src/lambda/http/createTodo.handler
+  CreateEvent:
+    handler: src/lambda/http/createEvent.handler
     events:
       - http:
           method: post
-          path: todos
+          path: events
           cors: true
           authorizer: Auth
           request:
             schemas:
               application/json:
-                schema: ${file(models/create-todo-model.json)}
-                name: createTodoModel
-                description: 'Validation model for Creating Todos'
+                schema: ${file(models/create-event-model.json)}
+                name: createEventModel
+                description: 'Validation model for Creating Event'
     iamRoleStatements:
       - Effect: Allow
         Action:
           - dynamodb:PutItem
-        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.EVENTS_TABLE}
 
-  UpdateTodo:
-    handler: src/lambda/http/updateTodo.handler
-    events:
-      - http:
-          method: patch
-          path: todos/{todoId}
-          cors: true
-          authorizer: Auth
-          request:
-            schemas:
-              application/json:
-                schema: ${file(models/update-todo-model.json)}
-                name: updateTodoModel
-                description: 'Validation model for Updating Todo'
-    iamRoleStatements:
-      - Effect: Allow
-        Action:
-          - dynamodb:UpdateItem
-        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}
-
-  DeleteTodo:
-    handler: src/lambda/http/deleteTodo.handler
+  DeleteEvent:
+    handler: src/lambda/http/deleteEvent.handler
     events:
       - http:
           method: delete
-          path: todos/{todoId}
+          path: events/{eventId}
           cors: true
           authorizer: Auth
     iamRoleStatements:
       - Effect: Allow
         Action:
           - dynamodb:DeleteItem
-        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.EVENTS_TABLE}
       - Effect: Allow
         Action:
           - s3:DeleteObject
@@ -123,7 +103,7 @@ functions:
     events:
       - http:
           method: post
-          path: todos/{todoId}/attachment
+          path: events/{eventId}/attachment
           cors: true
           authorizer: Auth
     iamRoleStatements:
@@ -135,7 +115,7 @@ functions:
       - Effect: Allow
         Action:
           - dynamodb:UpdateItem
-        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.EVENTS_TABLE}
 
 resources:
   Resources:
