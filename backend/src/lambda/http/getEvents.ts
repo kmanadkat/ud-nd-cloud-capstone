@@ -2,18 +2,18 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 import * as middy from 'middy'
 import { cors } from 'middy/middlewares'
 
-import { getTodosForUser as getTodosForUser } from '../../businessLogic/events'
+import { getEventsForUser } from '../../businessLogic/events'
 import { getUserId } from '../utils';
 
 
 export const handler = middy(
   async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     const userId = getUserId(event)
-    const todos = await getTodosForUser(userId)
+    const events = await getEventsForUser(userId)
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ items: todos })
+      body: JSON.stringify({ items: events })
     }
 })
 

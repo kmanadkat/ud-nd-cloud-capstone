@@ -1,20 +1,20 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 import * as middy from 'middy'
 import { cors } from 'middy/middlewares'
-import { createTodo } from '../../businessLogic/events';
-import { TodoItem } from '../../models/EventItem';
-import { CreateTodoRequest } from '../../requests/CreateEventRequest'
+import { createEvent } from '../../businessLogic/events';
+import { EventItem } from '../../models/EventItem';
+import { CreateEventRequest } from '../../requests/CreateEventRequest'
 import { getUserId } from '../utils';
 
 
 export const handler = middy(
   async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-    const newTodo: CreateTodoRequest = JSON.parse(event.body)
-    const todoItem: TodoItem = await createTodo(newTodo, getUserId(event))
+    const newEvent: CreateEventRequest = JSON.parse(event.body)
+    const eventItem: EventItem = await createEvent(newEvent, getUserId(event))
 
     return {
       statusCode: 201,
-      body: JSON.stringify({ item: todoItem })
+      body: JSON.stringify({ item: eventItem })
     }
 })
 

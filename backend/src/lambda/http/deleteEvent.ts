@@ -2,16 +2,16 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 import * as middy from 'middy'
 import { cors, httpErrorHandler } from 'middy/middlewares'
 
-import { deleteTodo } from '../../businessLogic/events'
+import { deleteEvent } from '../../businessLogic/events'
 import { getUserId } from '../utils'
 
 export const handler = middy(
   async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-    const todoId = event.pathParameters.todoId
-    const isTodoDeleted = await deleteTodo(todoId, getUserId(event))
+    const eventId = event.pathParameters.eventId
+    const isEventDeleted = await deleteEvent(eventId, getUserId(event))
     
     return {
-      statusCode: isTodoDeleted ? 200 : 400,
+      statusCode: isEventDeleted ? 200 : 400,
       body: ''
     }
   }

@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "event",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "pattern": "^(?!\\s*$).+"
+    },
+    "start": {
+      "type": "string",
+      "pattern": "^(?!\\s*$).+"
+    },
+    "end": {
+      "type": "string",
+      "pattern": "^(?!\\s*$).+"
+    },
+    "location": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "start",
+    "end",
+    "location",
+    "description"
+  ],
+  "additionalProperties": false
+}
