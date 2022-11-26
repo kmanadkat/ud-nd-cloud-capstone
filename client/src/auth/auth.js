@@ -28,14 +28,14 @@ class Auth {
     this.auth0.authorize();
   }
 
-  handleAuthentication() {
+  handleAuthentication(navigate) {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         console.log('Access token: ', authResult.accessToken)
         console.log('id token: ', authResult.idToken)
-        this.setSession(authResult);
+        this.setSession(authResult, navigate);
       } else if (err) {
-        // this.history.replace('/');
+        navigate("/")
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
@@ -50,7 +50,7 @@ class Auth {
     return this.idToken;
   }
 
-  setSession(authResult) {
+  setSession(authResult, navigate) {
     // Set isLoggedIn flag in localStorage
     localStorage.setItem('isLoggedIn', 'true');
 
@@ -61,7 +61,7 @@ class Auth {
     this.expiresAt = expiresAt;
 
     // navigate to the home route
-    // this.history.replace('/');
+    navigate("/")
   }
 
   renewSession() {
@@ -84,13 +84,10 @@ class Auth {
 
     // Remove isLoggedIn flag from localStorage
     localStorage.removeItem('isLoggedIn');
-
+    console.log(window.location.origin)
     this.auth0.logout({
       return_to: window.location.origin
     });
-
-    // navigate to the home route
-    // this.history.replace('/');
   }
 
   isAuthenticated() {

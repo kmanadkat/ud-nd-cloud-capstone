@@ -8,11 +8,8 @@ import UpdateEventForm from "../../components/UpdateEventForm";
 import useAddEventForm from "../../customHooks/useAddEventForm";
 import useCalendar from "../../customHooks/useCalendar";
 import useEvent from "../../customHooks/useEvent";
-import { mockData } from "../../utils/mockData";
-
 
 const Home = () => {
-  const { userName } = mockData
   const { 
     events,
     selectedEvent,
@@ -36,7 +33,7 @@ const Home = () => {
   return (
     <>
       <Toaster position="bottom-center" />
-      <Header username={userName} />
+      <Header />
       <div className="app-wrapper grid grid-cols-1 lg:grid-cols-12 p-6 md:p-12 gap-12">
         <div className="calendar-wrapper lg:col-span-8">
           <Calendar events={events} onEventClick={selectEvent} onDateClick={handleDateClick} />
