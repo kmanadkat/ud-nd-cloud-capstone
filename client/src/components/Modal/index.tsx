@@ -1,7 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react'
 import React, { Fragment } from 'react'
 
-const ModalForm = ({children, isOpen, closeModal}: ModalFormProps) => {
+const Modal = ({children, isOpen, closeModal}: ModalFormProps) => {
 
   return (
     <>
@@ -16,7 +16,7 @@ const ModalForm = ({children, isOpen, closeModal}: ModalFormProps) => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-black bg-opacity-50" />
+          <div className="fixed inset-0 bg-black bg-opacity-25" />
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-auto">
@@ -30,7 +30,7 @@ const ModalForm = ({children, isOpen, closeModal}: ModalFormProps) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-md bg-white p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-md bg-white text-left align-middle shadow-xl transition-all">
                 {children}
               </Dialog.Panel>
             </Transition.Child>
@@ -49,4 +49,4 @@ type ModalFormProps = {
 }
 
 
-export default ModalForm
+export default Modal
